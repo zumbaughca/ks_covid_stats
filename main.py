@@ -13,6 +13,7 @@ total_sum_data = Dataset.get_total_sum_data()
 print(month_sum_data.tail())
 
 app = Dash(__name__)
+server = app.server
 
 """
     HTML Layout:
