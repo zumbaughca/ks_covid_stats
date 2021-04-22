@@ -38,33 +38,39 @@ server = app.server
 """
 
 app.layout = html.Div([
-    html.Label('To obtain data, first select whether you would like to view positive cases or deaths.'
-               'Then select if you would like to view cumulative data from 30 days ago until now,'
-               'or if you would like to view cumulative data since the start of COVID'),
+    html.Div(
+        html.Label('Kansas COVID Stats',
+                   style={
+                       'position': 'relative',
+                       'font-size': 70
+                   }),
+        style={
+            'width': '100%',
+            'text-align': 'center'
+        }
+    ),
     html.Div([
 
         html.Div([dcc.Dropdown(id='case-death-selector',
-                           options=[
-                               {'label': 'Cases', 'value': 'cases'},
-                               {'label': 'Deaths', 'value': 'deaths'}
-                           ],
-                           clearable=False,
-                           value='cases',
-                           style={'width': '300px',
-                                  'float': 'left'}),
-              dcc.Dropdown(id='day-total-selector',
-                           options=[
-                                {'label': 'Cummulative total for last 30 days', 'value': 'month'},
-                                {'label': 'Cummulative total', 'value': 'all'}
-                           ],
-                           clearable=False,
-                           value='month',
-                           style={'width': '300px',
-                                  'float': 'left'})
-              ],
-             style={'width': '600px',
-                    'display': 'inline-block'})
-    ]),
+                               options=[
+                                   {'label': 'Cases', 'value': 'cases'},
+                                   {'label': 'Deaths', 'value': 'deaths'}
+                               ],
+                               clearable=False,
+                               value='cases',
+                               style={'width': '300px'}),
+                  dcc.Dropdown(id='day-total-selector',
+                               options=[
+                                   {'label': 'Cummulative total for last 30 days', 'value': 'month'},
+                                   {'label': 'Cummulative total', 'value': 'all'}
+                               ],
+                               clearable=False,
+                               value='month',
+                               style={'width': '300px'})
+                  ],
+                 style={'display': 'inline-block',
+                        'margin': 'auto'})
+    ], style={'text-align': 'center'}),
     html.Div([
         dcc.Graph('covid-graph', style={'float': 'left',
                                         'width': '50%'},
@@ -92,10 +98,11 @@ app.layout = html.Div([
                   })
     ],
         style={'display': 'inline-block',
-              'width': '100%'})
+               'width': '100%'})
 ],
     style={
-        'display': 'block'
+        'display': 'block',
+        'width': '100%'
     })
 
 @app.callback(
