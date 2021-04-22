@@ -30,3 +30,7 @@ class DataHelpers:
     @classmethod
     def sum_by_day(cls, df: pd.DataFrame):
         return df.groupby('date').sum()
+
+    @classmethod
+    def sum_by_county(cls, df: pd.DataFrame) -> pd.DataFrame:
+        return df.groupby('county').sum()

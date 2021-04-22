@@ -2,6 +2,7 @@ import pandas as pd
 import geopandas as gpd
 from shapely import wkt
 from helpers import DataHelpers
+import datetime
 
 
 class Data:
@@ -44,6 +45,17 @@ class Dataset:
         aggregate['new_monthly_cases'] = aggregate['cases'] - aggregate.iloc[0]['cases']
         aggregate['new_monthly_deaths'] = aggregate['deaths'] - aggregate.iloc[0]['deaths']
         return aggregate
+
+    @classmethod
+    def get_sum_by_county(cls) -> pd.DataFrame:
+        df = cls.covid_data[['county', 'cases', 'deaths']]
+        df['new_cases'] = df.groupby('county')['cases'].diff().fillna(0)
+        df['new_deaths'] = df.groupby('county')['deaths'].diff().fillna(0)
+        df = df.groupby('county').mean()
+        df['county'] = df.index
+        return DataHelpers.create_plot_data(loc=cls.location_data, loc_index='NAME',
+                                            data=df, data_index='county')
+
 
     @classmethod
     def get_total_sum_data(cls) -> pd.DataFrame:

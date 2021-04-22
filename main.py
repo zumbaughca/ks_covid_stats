@@ -10,9 +10,10 @@ from dash.dependencies import Input, Output
 current_data = Dataset.get_last_day_data()
 month_sum_data = Dataset.get_aggregate_sum()
 total_sum_data = Dataset.get_total_sum_data()
-print(month_sum_data.tail())
+month_county = Dataset.get_sum_by_county()
 
-app = Dash(__name__)
+
+app = Dash(__name__, title="Kansas COVID Stats")
 server = app.server
 
 """
@@ -104,7 +105,7 @@ app.layout = html.Div([
 )
 def create_plot(values, time):
     color_data = 'new_cases'
-    title = "New " + values + " yesterday"
+    title = "30 day average " + values + " per day"
     if values == 'deaths' and time == 'month':
         color_data = 'new_deaths'
     if values == 'deaths' and time == 'all':
@@ -113,7 +114,7 @@ def create_plot(values, time):
         color_data = 'cases'
     if time == 'all':
         title = "Total " + values
-    fig = px.choropleth(data_frame=current_data, locations=current_data.index,
+    fig = px.choropleth(data_frame=month_county, locations=current_data.index,
                         geojson=current_data.geometry,
                         color=color_data,
                         labels={'new_cases': 'Cases',
