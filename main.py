@@ -98,7 +98,13 @@ app.layout = html.Div([
                   })
     ],
         style={'display': 'inline-block',
-               'width': '100%'})
+               'width': '100%'}),
+    html.Label("Data provided by the New York Times",
+               style={
+                   'font-size': 24,
+                   'float': 'right',
+                   'margin': '30px'
+               })
 ],
     style={
         'display': 'block',
