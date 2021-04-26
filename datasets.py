@@ -28,14 +28,22 @@ class Data:
         ks = gpd.GeoDataFrame(raw_counties, geometry="geometry")
         return ks
 
+    @classmethod
+    def read_county_rolling(cls) -> pd.DataFrame:
+        data_url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/rolling-averages/us-counties-recent.csv'
+        raw_data = pd.read_csv(data_url)
+        kansas = raw_data[raw_data['state'] == 'Kansas']
+        return kansas
+
 
 class Dataset:
     covid_data = Data.read_covid_data()
     location_data = Data.read_location_data()
+    rolling_avg = Data.read_county_rolling()
 
     @classmethod
-    def get_last_day_data(cls) -> pd.DataFrame:
-        latest_data = DataHelpers.get_latest(cls.covid_data)
+    def get_last_day_data(cls, df: pd.DataFrame) -> pd.DataFrame:
+        latest_data = DataHelpers.get_latest(df)
         return DataHelpers.create_plot_data(loc=cls.location_data, loc_index='NAME',
                                             data=latest_data, data_index='county')
 

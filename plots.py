@@ -1,32 +1,19 @@
 import pandas as pd
 import plotly.express as px
 
-def create_choropleth(df: pd.DataFrame, values, time):
-    color_data = 'new_cases'
-    title = "30 day average " + values + " per day"
-    if values == 'deaths' and time == 'month':
-        color_data = 'new_deaths'
-    if values == 'deaths' and time == 'all':
-        color_data = 'deaths'
-    if values == 'cases' and time == 'all':
-        color_data = 'cases'
-    if time == 'all':
-        title = "Total " + values
+def create_choropleth(df: pd.DataFrame, color_data, title):
+
     fig = px.choropleth(data_frame=df, locations=df.index,
                         geojson=df.geometry,
                         color=color_data,
                         labels={'new_cases': 'Cases',
                                 'new_deaths': 'Deaths',
                                 'cases': 'Cases',
-                                'deaths': 'Deaths'})
+                                'deaths': 'Deaths',
+                                'cases_avg_per_100k': '7 day averages cases per 100k',
+                                'deaths_avg_per_100k': '7 day average deaths per 100k'})
     fig.update_geos(fitbounds='locations')
     fig.update_layout(dragmode=False,
-                      legend=dict(orientation="h",
-                                  yanchor="bottom",
-                                  xanchor="left",
-                                  y=0,
-                                  x=0,
-                                  title=""),
                       title={
                           'text': title,
                           'x': 0.5
@@ -34,6 +21,15 @@ def create_choropleth(df: pd.DataFrame, values, time):
                       font=dict(
                           size=18
                       ))
+    if color_data == 'cases_avg_per_100k':
+        fig.update_layout(coloraxis_colorbar=dict(
+            title='Cases'
+        ))
+    elif color_data == 'deaths_avg_per_100k':
+        fig.update_layout(coloraxis_colorbar=dict(
+            title='Deaths'
+        ))
+
 
     return fig
 
