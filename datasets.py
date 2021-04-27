@@ -50,7 +50,7 @@ class Data:
 class Dataset:
     covid_data = Data.read_covid_data()
     location_data = Data.read_location_data()
-    rolling_avg = Data.read_county_rolling()
+    county_rolling_avg = Data.read_county_rolling()
 
     @classmethod
     def get_last_day_data(cls, df: pd.DataFrame) -> pd.DataFrame:

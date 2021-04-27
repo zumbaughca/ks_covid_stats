@@ -21,6 +21,7 @@ def create_choropleth(df: pd.DataFrame, color_data, title):
                       font=dict(
                           size=18
                       ))
+    """
     if color_data == 'cases_avg_per_100k':
         fig.update_layout(coloraxis_colorbar=dict(
             title='Cases'
@@ -29,7 +30,7 @@ def create_choropleth(df: pd.DataFrame, color_data, title):
         fig.update_layout(coloraxis_colorbar=dict(
             title='Deaths'
         ))
-
+    """
 
     return fig
 

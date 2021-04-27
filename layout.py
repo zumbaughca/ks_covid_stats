@@ -122,7 +122,7 @@ def create_layout():
                        }),
         html.Div([
             dcc.Graph('rolling-cases',
-                      figure=plots.create_choropleth(df=Dataset.get_last_day_data(df=Dataset.rolling_avg),
+                      figure=plots.create_choropleth(df=Dataset.get_last_day_data(df=Dataset.county_rolling_avg),
                                                      color_data='cases_avg_per_100k',
                                                      title='Cases per 100,000 residents'),
                       config={
@@ -133,7 +133,7 @@ def create_layout():
                           'width': '50%'
                       }),
             dcc.Graph('rolling-deaths',
-                      figure=plots.create_choropleth(df=Dataset.get_last_day_data(df=Dataset.rolling_avg),
+                      figure=plots.create_choropleth(df=Dataset.get_last_day_data(df=Dataset.county_rolling_avg),
                                                      color_data='deaths_avg_per_100k',
                                                      title='Deaths per 100,000 residents'),
                       config={
