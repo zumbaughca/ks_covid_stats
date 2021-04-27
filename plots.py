@@ -3,6 +3,8 @@ import plotly.express as px
 
 def create_choropleth(df: pd.DataFrame, color_data, title):
     print(df.columns)
+    print(df.geometry.head())
+    print(df.index.head())
     fig = px.choropleth(data_frame=df, locations=df.index,
                         geojson=df.geometry,
                         color=color_data,
