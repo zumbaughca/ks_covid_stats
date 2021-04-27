@@ -7,8 +7,6 @@ import layout
 month_sum_data = Dataset.get_aggregate_sum()
 total_sum_data = Dataset.get_total_sum_data()
 month_county = Dataset.get_sum_by_county()
-rolling_avg = Dataset.get_last_day_data(df=Dataset.rolling_avg)
-
 
 app = Dash(__name__, title="Kansas COVID Stats")
 server = app.server

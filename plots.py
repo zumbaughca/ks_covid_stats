@@ -10,8 +10,8 @@ def create_choropleth(df: pd.DataFrame, color_data, title):
                                 'new_deaths': 'Deaths',
                                 'cases': 'Cases',
                                 'deaths': 'Deaths',
-                                'cases_avg_per_100k': '7 day averages cases per 100k',
-                                'deaths_avg_per_100k': '7 day average deaths per 100k'})
+                                'cases_avg_per_100k': 'Daily cases per 100k',
+                                'deaths_avg_per_100k': 'Daily deaths per 100k'})
     fig.update_geos(fitbounds='locations')
     fig.update_layout(dragmode=False,
                       title={

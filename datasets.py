@@ -7,17 +7,21 @@ import datetime
 
 class Data:
     @classmethod
+    def get_kansas(cls, df: pd.DataFrame) -> pd.DataFrame:
+        return df[df['state'] == 'Kansas']
+
+    @classmethod
     def read_covid_data(cls) -> pd.DataFrame:
         data_url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties-recent.csv'
         df = pd.read_csv(data_url)
-        kansas = df[df['state'] == 'Kansas']
+        kansas = cls.get_kansas(df)
         return kansas
 
     @classmethod
     def read_total_covid_data(cls) -> pd.DataFrame:
         data_url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv'
         df = pd.read_csv(data_url)
-        kansas = df[df['state'] == 'Kansas']
+        kansas = cls.get_kansas(df)
         kansas.set_index('date', inplace=True)
         return kansas
 
@@ -32,14 +36,21 @@ class Data:
     def read_county_rolling(cls) -> pd.DataFrame:
         data_url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/rolling-averages/us-counties-recent.csv'
         raw_data = pd.read_csv(data_url)
-        kansas = raw_data[raw_data['state'] == 'Kansas']
+        kansas = cls.get_kansas(raw_data)
+        return kansas
+
+    @classmethod
+    def read_state_rolling(cls) -> pd.DataFrame:
+        data_url = 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/rolling-averages/us-states.csv'
+        raw_data = pd.read_csv(data_url)
+        kansas = cls.get_kansas(raw_data)
         return kansas
 
 
 class Dataset:
     covid_data = Data.read_covid_data()
     location_data = Data.read_location_data()
-    rolling_avg = Data.read_county_rolling()
+    county_rolling_avg = Data.read_county_rolling()
 
     @classmethod
     def get_last_day_data(cls, df: pd.DataFrame) -> pd.DataFrame:
