@@ -19,47 +19,7 @@ def create_layout():
                 'margin-bottom': '40px'
             }
         ),
-        html.Div([
-            html.Div([
-                html.Label('New Cases',
-                           style={'display': 'block',
-                                  'font-size': '40px'}),
-                html.Label(Data.read_state_rolling().cases.iloc[-1],
-                           style={
-                               'font-size': '40px'
-                           })
-            ],
-            style={
-                'border': '1px solid',
-                'border-radius': '15px',
-                'width': '325px',
-                'display': 'inline-block',
-                'margin-right': '50px',
-                'background-color': '#000080',
-                'color': '#FFFFFF'
-            }),
-            html.Div([
-                html.Label('New Deaths',
-                           style={'display': 'block',
-                                  'font-size': '40px'}),
-                html.Label(Data.read_state_rolling().deaths.iloc[-1],
-                           style={
-                               'font-size': '40px'
-                           })
-            ],
-            style={
-                'border': '1px solid',
-                'border-radius': '15px',
-                'width': '325px',
-                'display': 'inline-block',
-                'margin-left': '50px',
-                'background-color': '#000080',
-                'color': '#FFFFFF'
-            })
-        ],
-        style={
-            'margin': '50px'
-        }),
+        
         html.Div([
             html.Div([dcc.Dropdown(id='case-death-selector',
                                    options=[
