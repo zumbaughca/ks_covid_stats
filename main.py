@@ -32,7 +32,8 @@ server = app.server
     </main div>
 """
 
-app.layout = layout.create_layout()
+
+app.layout = layout.create_layout
 
 
 @app.callback(
