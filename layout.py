@@ -1,3 +1,5 @@
+import datetime
+
 import dash_html_components as html
 import dash_core_components as dcc
 import plots
@@ -156,6 +158,13 @@ def create_layout():
             }
         ),
         html.Label("Data source: The New York Times",
+                   style={
+                       'font-size': 24,
+                       'float': 'right',
+                       'margin': '30px',
+                       'margin-top': '100px'
+                   }),
+        html.Label("Last updated: " + datetime.datetime.now().strftime('%H:%M:%S'),
                    style={
                        'font-size': 24,
                        'float': 'right',
