@@ -40,7 +40,7 @@ def create_scatter(df: pd.DataFrame, value, time):
     if value == 'deaths':
         response = 'new_monthly_deaths'
     if time == 'all':
-        title = "Cumulative " + value + " since March 7, 2020"
+        title = "Total " + value
         if value == 'cases':
             response = 'cases'
         else:
