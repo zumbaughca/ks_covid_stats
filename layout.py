@@ -164,7 +164,7 @@ def create_layout():
                        'margin': '30px',
                        'margin-top': '100px'
                    }),
-        html.Label("Last updated: " + datetime.datetime.now().strftime('%H:%M:%S'),
+        html.Label("Last updated: " + datetime.datetime.today().strftime("%m-%d-%Y"),
                    style={
                        'font-size': 24,
                        'float': 'right',
