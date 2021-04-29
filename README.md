@@ -7,6 +7,7 @@ This is currently a work in progress and the accuracy of data is not guranteed. 
 * [30 Day Data](#30-day-data)
 * [Cumulative Data](#cumulative-data)
 * [Rolling Averages](#rolling-averages)
+* [New Cases](#new-cases)
 
 
 # Data Source
@@ -21,3 +22,5 @@ Cumulative data can be viewed on the county level (choropleth map) or statewide.
 # Rolling Averages
 Displays the 7-day rolling average of new cases and deaths per day per 100,000 residents on the county level. This dataset is provided pre-calculated by The New York Times.
 
+# New Cases
+The statewide new cases and deaths are shown at the top of the cases. These values represent the last single-day change in the respective values. Because of the way The New York Times updates the data, these values represent the change from the previous day.
