@@ -164,7 +164,7 @@ def create_layout():
                        'margin': '30px',
                        'margin-top': '100px'
                    }),
-        html.Label("Last updated: " + datetime.datetime.today().strftime("%m-%d-%Y"),
+        html.Label("Last updated: " + Data.read_county_rolling().date.iloc[-1],
                    style={
                        'font-size': 24,
                        'float': 'right',
